@@ -3,7 +3,7 @@
 **VITAL** es una plataforma web que digitaliza la relación entre una empresa de servicio eléctrico y sus usuarios: contratos, facturación por consumo real, pagos, emergencias, beneficios sociales y supervisión operativa — todo en una sola aplicación con cuatro perfiles de usuario.
 
 <p align="center">
-  <a href="https://TU-USUARIO.github.io/vital/"><strong>▶ Probar la demo en vivo</strong></a> · sin instalación, con los 4 roles precargados
+  <a href="https://cdurant05.github.io/Vital/"><strong>▶ Probar la demo en vivo</strong></a> · sin instalación, con los 4 roles precargados
 </p>
 
 <p align="center">
