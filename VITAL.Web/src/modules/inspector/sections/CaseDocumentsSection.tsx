@@ -2,7 +2,7 @@ import type { VulnerabilityCase } from '../../../types'
 
 export default function CaseDocumentsSection({ caseData }: { caseData: VulnerabilityCase }) {
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
+    <div data-tour="case-documents" className="bg-white rounded-xl shadow-sm border border-gray-100 p-5">
       <h2 className="font-semibold text-gray-700 mb-3">📄 Documentos ({caseData.evidences.length})</h2>
       {caseData.evidences.length === 0 ? (
         <p className="text-sm text-gray-400">Sin documentos adjuntos</p>

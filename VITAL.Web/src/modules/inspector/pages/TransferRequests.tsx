@@ -34,12 +34,14 @@ export default function TransferRequests() {
           )}
         </div>
 
-        <TransferRequestsListSection
-          transfers={transfers}
-          loading={loading}
-          formatDate={formatDate}
-          onSelect={setSelected}
-        />
+        <div data-tour="transfers-list">
+          <TransferRequestsListSection
+            transfers={transfers}
+            loading={loading}
+            formatDate={formatDate}
+            onSelect={setSelected}
+          />
+        </div>
       </div>
 
       {/* ── Modal: Revisar solicitud ── */}

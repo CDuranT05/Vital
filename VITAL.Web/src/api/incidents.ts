@@ -17,7 +17,7 @@ export interface IncidentAlert {
 }
 
 export const reportIncident = async (contractId: string): Promise<void> => {
-  if (DEMO) return mockReportIncident()
+  if (DEMO) return mockReportIncident(contractId)
   await api.post('/incidents', { contractId })
 }
 

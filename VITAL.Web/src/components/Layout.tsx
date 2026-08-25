@@ -1,8 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
+import { useTour } from '../tour/TourContext'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, logout } = useAuth()
+  const { hasTour, startTour } = useTour()
   const navigate = useNavigate()
 
   const handleLogout = () => {
@@ -39,6 +41,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             <nav className="hidden md:flex gap-5 text-sm">{navLinks()}</nav>
           </div>
           <div className="flex items-center gap-3">
+            {hasTour && (
+              <button
+                onClick={startTour}
+                title="Ver tutorial"
+                className="bg-white/10 hover:bg-white/20 text-sm w-8 h-8 rounded-lg transition-colors"
+              >
+                ❓
+              </button>
+            )}
             {user?.role !== 'Citizen' && (
               <span className="text-sm opacity-80">
                 {user?.firstName} · <span className="text-green-300">{roleLabel[user?.role ?? ''] ?? user?.role}</span>

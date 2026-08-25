@@ -28,7 +28,7 @@ export default function ContractDetailModal({ contract, nickname, onSaveNickname
       title={nickname || contract.contractNumber}
       subtitle={contract.contractNumber}
     >
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="contract-detail">
         {/* Apodo editable */}
         <div>
           <label className="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Nombre personalizado</label>

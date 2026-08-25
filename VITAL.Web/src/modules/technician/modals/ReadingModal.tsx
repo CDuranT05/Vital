@@ -31,7 +31,7 @@ export default function ReadingModal({ scanResult, onGenerated, onClose }: Readi
 
   return (
     <Modal open onClose={onClose} size="sm" padded={false}>
-      <div className="p-6">
+      <div className="p-6" data-tour="reading-modal">
         <h3 className="text-lg font-bold text-gray-800 mb-1">⚡ Registrar Lectura</h3>
         {scanResult.contractNumber && (
           <p className="text-sm text-gray-500 mb-1">{scanResult.contractNumber}</p>

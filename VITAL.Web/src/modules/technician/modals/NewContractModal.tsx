@@ -72,7 +72,7 @@ export default function NewContractModal({ scannedQrCode, branches, onRegistered
 
   return (
     <Modal open onClose={onClose} size="lg" padded={false}>
-      <div className="p-6">
+      <div className="p-6" data-tour="new-contract-modal">
         <h3 className="text-lg font-bold text-gray-800 mb-1">📋 Registrar Nuevo Contrato</h3>
         <p className="text-sm text-gray-500 mb-4">El perfil de ciudadano se crea automáticamente si no existe</p>
 

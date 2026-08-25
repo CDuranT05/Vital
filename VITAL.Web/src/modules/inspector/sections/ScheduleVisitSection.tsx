@@ -43,7 +43,7 @@ export default function ScheduleVisitSection({ caseData, visits, onScheduled }: 
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 mt-5 first:mt-0">
+    <div data-tour="schedule-visit" className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 mt-5 first:mt-0">
       <h2 className="font-semibold text-gray-700 mb-1">📅 Visita Domiciliaria</h2>
 
       {ownVisit ? (

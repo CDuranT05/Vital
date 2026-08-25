@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
 import { AlertProvider } from './context/AlertContext'
+import { TourProvider } from './tour/TourContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import CitizenDashboard from './modules/citizen/pages/CitizenDashboard'
@@ -19,6 +20,7 @@ export default function App() {
     <AuthProvider>
       {/* basename sigue al `base` de Vite — en GitHub Pages la app vive en /<repo>/ */}
       <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <TourProvider>
         <AlertProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
@@ -82,6 +84,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/login" replace />} />
         </Routes>
         </AlertProvider>
+        </TourProvider>
       </BrowserRouter>
     </AuthProvider>
   )

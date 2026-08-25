@@ -178,18 +178,6 @@ export const CITIZEN_CASES: VulnerabilityCase[] = [
 // ── Alertas de incidentes (para técnico) ───────────────────────────────────────
 export const INCIDENT_ALERTS: IncidentAlert[] = [
   {
-    id: IDS.incident1,
-    contractNumber: 'ESP-2024-0042',
-    serviceAddress: 'Calle Bolívar N°14, El Espino',
-    parish: 'El Espino',
-    municipality: 'Infantes',
-    state: 'Guárico',
-    citizenName: 'Carmen Rodríguez',
-    citizenPhone: '04141234567',
-    citizenIdentityCard: 'V-14523187',
-    reportedAt: '2025-06-22T07:45:00Z',
-  },
-  {
     id: IDS.incident2,
     contractNumber: 'ESP-2024-0078',
     serviceAddress: 'Av. Sucre N°7, El Espino',

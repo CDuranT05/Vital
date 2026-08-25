@@ -95,7 +95,7 @@ export default function RequestFormModal({ type, contracts, onBack, onSubmitted,
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" data-tour="request-form">
           <button type="button" onClick={onBack} className="text-sm text-gray-400 hover:text-gray-600">
             ← Cambiar tipo de solicitud
           </button>

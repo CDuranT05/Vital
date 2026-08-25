@@ -111,7 +111,7 @@ export default function CitizenDashboard() {
 
       {/* Tabs */}
       <div className="bg-white rounded-xl shadow-sm border border-gray-100">
-        <div className="flex border-b border-gray-100">
+        <div data-tour="citizen-tabs" className="flex border-b border-gray-100">
           {(['contracts', 'invoices', 'cases'] as const).map(tab => (
             <button
               key={tab}
@@ -133,21 +133,27 @@ export default function CitizenDashboard() {
           ) : (
             <>
               {activeTab === 'contracts' && (
-                <ContractsSection
-                  contracts={contracts}
-                  nicknames={nicknames}
-                  emergencySent={emergencySent}
-                  onOpenDetail={setDetailContract}
-                  onEmergency={handleEmergency}
-                />
+                <div data-tour="contracts-list">
+                  <ContractsSection
+                    contracts={contracts}
+                    nicknames={nicknames}
+                    emergencySent={emergencySent}
+                    onOpenDetail={setDetailContract}
+                    onEmergency={handleEmergency}
+                  />
+                </div>
               )}
 
               {activeTab === 'invoices' && (
-                <InvoicesSection invoices={invoices} onOpenInvoice={setDetailInvoice} />
+                <div data-tour="invoices-list">
+                  <InvoicesSection invoices={invoices} onOpenInvoice={setDetailInvoice} />
+                </div>
               )}
 
               {activeTab === 'cases' && (
-                <CasesSection cases={cases} onNewRequest={() => setRequestTypeOpen(true)} />
+                <div data-tour="cases-section">
+                  <CasesSection cases={cases} onNewRequest={() => setRequestTypeOpen(true)} />
+                </div>
               )}
             </>
           )}

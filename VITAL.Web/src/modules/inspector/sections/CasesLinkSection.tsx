@@ -5,6 +5,7 @@ export default function CasesLinkSection({ count }: { count: number }) {
   return (
     <Link
       to="/inspector/cases"
+      data-tour="cases-link"
       className="flex items-center justify-between bg-[#1a5276] hover:bg-[#154360] rounded-2xl px-5 py-4 transition-colors shadow-sm shadow-blue-200 group"
     >
       <div className="flex items-center gap-3">

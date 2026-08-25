@@ -50,7 +50,7 @@ export default function SocialCases() {
         />
 
         {/* La lista crece para llenar la pantalla en móviles */}
-        <div className="flex-1">
+        <div className="flex-1" data-tour="cases-list">
           <CasesListSection cases={filtered} loading={loading} />
         </div>
 

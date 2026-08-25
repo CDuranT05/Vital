@@ -12,7 +12,7 @@ export function StatCard({ label, value, sub, color }: { label: string; value: n
 
 export default function GlobalMetricsSection({ metrics }: { metrics: GlobalMetrics }) {
   return (
-    <section>
+    <section data-tour="sup-global">
       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Métricas Globales</p>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
         <StatCard

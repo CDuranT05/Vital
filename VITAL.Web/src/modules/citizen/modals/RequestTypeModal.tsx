@@ -24,7 +24,7 @@ export default function RequestTypeModal({ ineligible, onSelect, onClose }: Requ
           </button>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-4" data-tour="request-type-modal">
           <p className="text-sm text-gray-500">Selecciona el tipo de solicitud que deseas realizar:</p>
           <div className="grid gap-3">
             {REQUEST_TYPES.map(t => (

@@ -51,7 +51,7 @@ export default function ReviewTransferModal({ transfer, formatDate, onReviewed, 
 
   return (
     <Modal open onClose={onClose} icon="🔄" title="Revisión de Solicitud" subtitle={transfer.contractNumber} size="lg">
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="transfer-modal">
         {/* Titular actual */}
         <div className="bg-gray-50 rounded-xl p-4 space-y-1">
           <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">Titular Actual</p>

@@ -16,7 +16,7 @@ export default function ReportsSection({ branch }: { branch: BranchMetrics | nul
   }
 
   return (
-    <section>
+    <section data-tour="sup-reports">
       <div className="flex items-center gap-3 mb-3">
         <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">Descargar Informes</p>
         <div className="flex-1 h-px bg-gray-100" />

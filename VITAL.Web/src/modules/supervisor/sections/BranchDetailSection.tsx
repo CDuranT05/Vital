@@ -3,7 +3,7 @@ import { StatCard } from './GlobalMetricsSection'
 
 export default function BranchDetailSection({ branch }: { branch: BranchMetrics }) {
   return (
-    <section className="space-y-4">
+    <section data-tour="sup-detail" className="space-y-4">
       <div className="flex items-center gap-3">
         <p className="text-xs font-bold text-gray-400 uppercase tracking-wider">
           Detalle — {branch.branchName}

@@ -12,7 +12,7 @@ export default function StatsSection({ contractsCount, invoicesCount, casesCount
   ]
 
   return (
-    <div className="grid grid-cols-3 gap-4 mb-6">
+    <div data-tour="citizen-stats" className="grid grid-cols-3 gap-4 mb-6">
       {stats.map(s => (
         <div key={s.label} className={`${s.color} border rounded-xl p-4 text-center`}>
           <div className="text-3xl mb-1">{s.icon}</div>

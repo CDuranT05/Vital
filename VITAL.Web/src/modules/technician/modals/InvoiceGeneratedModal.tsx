@@ -9,7 +9,7 @@ interface InvoiceGeneratedModalProps {
 export default function InvoiceGeneratedModal({ result, onClose }: InvoiceGeneratedModalProps) {
   return (
     <Modal open onClose={onClose} size="sm" padded={false}>
-      <div className="p-6 text-center">
+      <div className="p-6 text-center" data-tour="invoice-done">
         <div className="text-5xl mb-3">✅</div>
         <h3 className="text-xl font-bold text-gray-800 mb-1">Medición Terminada</h3>
         <p className="text-sm text-gray-500 mb-5">

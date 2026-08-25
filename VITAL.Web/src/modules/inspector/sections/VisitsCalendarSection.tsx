@@ -15,7 +15,7 @@ export default function VisitsCalendarSection({ visits, onDayClick }: VisitsCale
   }, {})
 
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6">
+    <div data-tour="visits-calendar" className="bg-white rounded-2xl border border-gray-100 shadow-sm p-4 sm:p-6">
       <div className="flex items-center gap-2 mb-3">
         <span className="text-lg">📅</span>
         <p className="font-semibold text-gray-700 text-sm">Visitas Domiciliarias</p>

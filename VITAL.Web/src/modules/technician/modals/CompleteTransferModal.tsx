@@ -30,7 +30,7 @@ export default function CompleteTransferModal({ transfer, onCompleted, onClose }
 
   return (
     <Modal open onClose={onClose} icon="🔄" title="Cambio de Titularidad" subtitle={transfer.contractNumber}>
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="tech-transfer-modal">
         {done ? (
           <div className="text-center py-4">
             <div className="text-5xl mb-3">✅</div>

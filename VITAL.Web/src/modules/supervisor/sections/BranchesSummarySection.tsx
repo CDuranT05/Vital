@@ -20,7 +20,7 @@ interface BranchesSummarySectionProps {
 
 export default function BranchesSummarySection({ branches, selectedBranchId, onSelect }: BranchesSummarySectionProps) {
   return (
-    <section>
+    <section data-tour="sup-branches">
       <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3">Resumen por Subestación</p>
       <div className="grid md:grid-cols-3 gap-3">
         {branches.map(b => (

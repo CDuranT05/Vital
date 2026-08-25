@@ -20,6 +20,7 @@ export default function PayInvoiceModal({ invoice, onPaid, onClose }: PayInvoice
 
   const handlePay = async () => {
     if (!refNumber.trim()) { setPayError('Ingresa el número de referencia.'); return }
+    if (!receipt) { setPayError('Adjunta la foto del comprobante de pago.'); return }
     setPaying(true); setPayError('')
     try {
       await submitPayment(invoice.id, refNumber.trim(), payMethod, receipt ?? undefined)
@@ -35,7 +36,7 @@ export default function PayInvoiceModal({ invoice, onPaid, onClose }: PayInvoice
 
   return (
     <Modal open onClose={onClose} size="sm" padded={false}>
-      <div className="p-6">
+      <div className="p-6" data-tour="pay-modal">
         {paySuccess ? (
           /* ── Estado: Pago aprobado ── */
           <div className="text-center">
@@ -93,10 +94,10 @@ export default function PayInvoiceModal({ invoice, onPaid, onClose }: PayInvoice
 
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Foto del comprobante
+                  Foto del comprobante *
                 </label>
                 <input ref={fileRef} type="file" accept="image/*" className="hidden"
-                  onChange={e => setReceipt(e.target.files?.[0] ?? null)} />
+                  onChange={e => { setReceipt(e.target.files?.[0] ?? null); setPayError('') }} />
                 <button type="button" onClick={() => fileRef.current?.click()}
                   className="w-full border-2 border-dashed border-gray-300 rounded-lg px-3 py-3 text-sm text-gray-500 hover:border-[#1a5276] hover:text-[#1a5276] transition-colors text-center">
                   {receipt ? `📎 ${receipt.name}` : '📷 Seleccionar imagen'}
@@ -129,7 +130,7 @@ export default function PayInvoiceModal({ invoice, onPaid, onClose }: PayInvoice
                   className="flex-1 border border-gray-300 text-gray-600 py-2.5 rounded-lg hover:bg-gray-50 disabled:opacity-50">
                   Cancelar
                 </button>
-                <button onClick={handlePay} disabled={paying || !refNumber.trim()}
+                <button onClick={handlePay} disabled={paying || !refNumber.trim() || !receipt}
                   className="flex-1 bg-[#1a5276] text-white py-2.5 rounded-lg hover:bg-[#154360] disabled:opacity-60 font-semibold">
                   {paying ? 'Verificando...' : 'Confirmar Pago'}
                 </button>

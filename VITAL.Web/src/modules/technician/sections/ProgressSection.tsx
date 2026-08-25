@@ -12,7 +12,7 @@ export default function ProgressSection({ total, restantes }: ProgressSectionPro
   const strokeDashoffset = circunferencia - (porcentaje / 100) * circunferencia
 
   return (
-    <div className="flex items-center justify-center gap-6 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+    <div data-tour="tech-progress" className="flex items-center justify-center gap-6 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
       {/* Lado Izquierdo: Llevadas */}
       <div className="flex flex-col items-center justify-center min-w-22.5">
         <span className="text-3xl font-extrabold text-gray-800 ">{medidas}</span>

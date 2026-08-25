@@ -49,7 +49,7 @@ export default function CaseReviewSection({ caseData, visitScheduled, onReviewed
   }
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sticky top-4">
+    <div data-tour="case-review" className="bg-white rounded-xl shadow-sm border border-gray-100 p-5 sticky top-4">
       <h2 className="font-semibold text-gray-700 mb-4">⚖️ Revisión del Inspector</h2>
 
       {/* ── Caso cerrado: aprobado ── */}
@@ -69,7 +69,7 @@ export default function CaseReviewSection({ caseData, visitScheduled, onReviewed
 
       {/* ── Caso cerrado: rechazado ── */}
       {caseData.status === 4 && (
-        <div className="bg-red-50 border border-red-200 rounded-lg px-4 py-4 text-sm">
+        <div data-tour="case-rejected" className="bg-red-50 border border-red-200 rounded-lg px-4 py-4 text-sm">
           <p className="text-center text-xl mb-1">✕</p>
           <p className="text-center font-semibold text-red-700">Solicitud rechazada</p>
           {caseData.observations && (
@@ -121,7 +121,7 @@ export default function CaseReviewSection({ caseData, visitScheduled, onReviewed
 
       {/* ── Etapa 2: Resultado de la visita ── */}
       {caseData.status === 2 && (
-        <div className="space-y-4">
+        <div className="space-y-4" data-tour="case-result">
           <div className="bg-amber-50 border border-amber-100 rounded-lg px-3 py-2 text-xs text-amber-700">
             <strong>Etapa 2 de 2 · Visita domiciliaria.</strong> Documentos aprobados.
             {visitScheduled

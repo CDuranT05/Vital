@@ -236,8 +236,28 @@ export const mockGetAssignedIncidents = async (): Promise<AssignedIncident[]> =>
   return _assigned
 }
 
-export const mockReportIncident = async (): Promise<void> => {
+// El botón de emergencia del ciudadano genera la alerta que ve el técnico
+export const mockReportIncident = async (contractId: string): Promise<void> => {
   await delay(300)
+  const contract = CITIZEN_CONTRACTS.find(c => c.id === contractId)
+  if (!contract) return
+  // evita duplicar la alerta si ya hay una activa para el mismo contrato
+  if (_alerts.some(a => a.contractNumber === contract.contractNumber)) return
+  _alerts = [
+    {
+      id: `alert-demo-${Date.now()}`,
+      contractNumber: contract.contractNumber,
+      serviceAddress: contract.serviceAddress,
+      parish: contract.property?.parish ?? '',
+      municipality: contract.property?.municipality ?? '',
+      state: contract.property?.state ?? '',
+      citizenName: `${CITIZEN_PROFILE.firstName} ${CITIZEN_PROFILE.lastName}`,
+      citizenPhone: CITIZEN_PROFILE.phone ?? '',
+      citizenIdentityCard: CITIZEN_PROFILE.identityCard,
+      reportedAt: new Date().toISOString(),
+    },
+    ..._alerts,
+  ]
 }
 
 export const mockResolveIncident = async (id: string): Promise<void> => {
@@ -327,9 +347,25 @@ export const mockChangePhone = async (_cp: string, newPhone: string): Promise<vo
   _profile = { ..._profile, phone: newPhone }
 }
 
+// ── branches ─────────────────────────────────────────────────────────────────
+export const mockGetBranches = async () => {
+  await delay()
+  return [
+    { id: IDS.branchEspino,  name: 'Subestación El Espino',              city: 'El Espino' },
+    { id: IDS.branchValle,   name: 'Subestación Valle de la Pascua',     city: 'Valle de la Pascua' },
+    { id: IDS.branchSanJuan, name: 'Subestación San Juan de los Morros', city: 'San Juan de los Morros' },
+  ]
+}
+
 // ── meters / qr ──────────────────────────────────────────────────────────────
-export const mockScanQr = async (_qrCode: string) => {
+export const mockScanQr = async (qrCode: string) => {
   await delay(300)
+  const code = qrCode.trim()
+  // Códigos que empiezan con "NUEVO" simulan un medidor sin contrato
+  // (dispara el flujo de registrar al nuevo cliente en sitio)
+  if (/^nuevo/i.test(code)) {
+    return { qrCode: code.toUpperCase(), hasContract: false }
+  }
   return QR_SCAN_RESULT
 }
 

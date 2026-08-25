@@ -29,7 +29,7 @@ export default function TechnicianIncidents() {
 
   return (
     <Layout>
-      <div className="max-w-lg mx-auto space-y-4">
+      <div data-tour="tech-tasks" className="max-w-lg mx-auto space-y-4">
         {/* Header */}
         <div className="flex items-center gap-3">
           <button

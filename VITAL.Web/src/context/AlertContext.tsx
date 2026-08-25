@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { getAlerts, acknowledgeIncident } from '../api/incidents'
 import type { IncidentAlert } from '../api/incidents'
 import { useAuth } from './AuthContext'
+import { useTour } from '../tour/TourContext'
 
 interface AlertContextType {
   alerts: IncidentAlert[]
@@ -12,11 +13,15 @@ const AlertContext = createContext<AlertContextType>({ alerts: [] })
 
 export function AlertProvider({ children }: { children: ReactNode }) {
   const { user } = useAuth()
+  // El tour del técnico retiene la alerta hasta presentarla en su momento
+  const { alertsHeld } = useTour()
   const isTechnician = user?.role === 'Technician'
 
   const [alerts, setAlerts] = useState<IncidentAlert[]>([])
   const [ackLoading, setAckLoading] = useState(false)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null)
+  // Alertas omitidas por el técnico — no vuelven a aparecer en esta sesión
+  const dismissedRef = useRef<Set<string>>(new Set())
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -25,7 +30,7 @@ export function AlertProvider({ children }: { children: ReactNode }) {
     const fetchAlerts = async () => {
       try {
         const data = await getAlerts()
-        setAlerts(data)
+        setAlerts(data.filter(a => !dismissedRef.current.has(a.id)))
       } catch {
         // silencioso
       }
@@ -51,15 +56,20 @@ export function AlertProvider({ children }: { children: ReactNode }) {
     }
   }, [navigate])
 
+  const handleDismiss = useCallback((id: string) => {
+    dismissedRef.current.add(id)
+    setAlerts(prev => prev.filter(a => a.id !== id))
+  }, [])
+
   const currentAlert = alerts[0] ?? null
 
   return (
     <AlertContext.Provider value={{ alerts }}>
       {children}
 
-      {isTechnician && currentAlert && (
+      {isTechnician && currentAlert && !alertsHeld && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
+          <div data-tour="emergency-alert" className="bg-white rounded-2xl shadow-2xl w-full max-w-sm overflow-hidden">
             <div className="bg-red-600 px-5 py-4 flex items-center gap-3">
               <span className="text-3xl animate-bounce">🚨</span>
               <div>
@@ -98,13 +108,22 @@ export function AlertProvider({ children }: { children: ReactNode }) {
                 })}
               </p>
 
-              <button
-                onClick={() => handleAcknowledge(currentAlert.id)}
-                disabled={ackLoading}
-                className="w-full bg-red-600 hover:bg-red-700 active:scale-95 text-white py-3 rounded-xl font-bold text-base transition-all disabled:opacity-60 shadow-lg shadow-red-200"
-              >
-                {ackLoading ? 'Procesando...' : '✅ Atender Emergencia'}
-              </button>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => handleDismiss(currentAlert.id)}
+                  disabled={ackLoading}
+                  className="flex-1 border border-gray-300 text-gray-600 hover:bg-gray-50 py-3 rounded-xl font-semibold text-sm transition-colors disabled:opacity-60"
+                >
+                  Omitir
+                </button>
+                <button
+                  onClick={() => handleAcknowledge(currentAlert.id)}
+                  disabled={ackLoading}
+                  className="flex-[2] bg-red-600 hover:bg-red-700 active:scale-95 text-white py-3 rounded-xl font-bold text-base transition-all disabled:opacity-60 shadow-lg shadow-red-200"
+                >
+                  {ackLoading ? 'Procesando...' : '✅ Atender Emergencia'}
+                </button>
+              </div>
             </div>
           </div>
         </div>

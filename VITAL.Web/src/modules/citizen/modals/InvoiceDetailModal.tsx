@@ -12,7 +12,7 @@ interface InvoiceDetailModalProps {
 export default function InvoiceDetailModal({ invoice, onPay, onClose }: InvoiceDetailModalProps) {
   return (
     <Modal open onClose={onClose} icon="🧾" title="Factura" subtitle={invoice.contractNumber} size="sm">
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="invoice-detail">
         {/* Info principal */}
         <div className="bg-gray-50 rounded-xl p-4 space-y-2.5">
           <div className="flex justify-between text-sm">

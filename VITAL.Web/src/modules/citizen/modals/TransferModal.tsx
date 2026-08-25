@@ -51,7 +51,7 @@ export default function TransferModal({ contract, onClose }: TransferModalProps)
       title="Solicitud de Cambio de Titularidad"
       subtitle={contract.contractNumber}
     >
-      <div className="space-y-4">
+      <div className="space-y-4" data-tour="transfer-form">
         {success ? (
           <div className="text-center py-4">
             <div className="text-5xl mb-3">✅</div>

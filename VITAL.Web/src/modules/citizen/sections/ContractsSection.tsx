@@ -39,6 +39,7 @@ export default function ContractsSection({ contracts, nicknames, emergencySent, 
               ) : (
                 <button
                   onClick={() => onEmergency(c.id)}
+                  data-tour="emergency-btn"
                   className="shrink-0 bg-green-50 border-green-200 active:scale-95 text-white text-xs font-bold px-3 py-1.5 rounded-full shadow-md shadow-red-200 transition-all"
                 >
                   🚨
