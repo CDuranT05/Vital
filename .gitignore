@@ -1,0 +1,29 @@
+# ── Node / Vite (frontend) ────────────────────────────────
+node_modules/
+dist/
+*.local
+*.log
+
+# ── .NET (API) ────────────────────────────────────────────
+bin/
+obj/
+.vs/
+*.user
+*.db
+*.db-shm
+*.db-wal
+
+# Configuración con secretos — usar el .example como plantilla
+appsettings.Development.json
+
+# ── Editores ──────────────────────────────────────────────
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+
+# ── Scripts locales de utilidad (no forman parte del proyecto) ──
+QueryDb/
+*.py
+*.csx
+iniciar-vital.bat

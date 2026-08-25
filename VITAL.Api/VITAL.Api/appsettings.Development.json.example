@@ -1,0 +1,16 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Data Source=vital.db"
+  },
+  "Jwt": {
+    "Key": "CAMBIA-ESTA-CLAVE-POR-UNA-DE-32-CARACTERES-MINIMO",
+    "Issuer": "VitalApi",
+    "Audience": "VitalClient"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  }
+}

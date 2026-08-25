@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="VITAL.Api/VITAL.Api.csproj" />
+  <Project Path="Vital.Application/Vital.Application.csproj" />
+  <Project Path="Vital.Domain/Vital.Domain.csproj" />
+  <Project Path="Vital.Infrastructure/Vital.Infrastructure.csproj" />
+  <Project Path="Vital.Tests/Vital.Tests.csproj" />
+</Solution>

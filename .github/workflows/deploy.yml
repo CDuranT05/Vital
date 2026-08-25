@@ -1,0 +1,59 @@
+# Compila la demo (modo mock, sin backend) y la publica en GitHub Pages
+# en cada push a main. Activar en: Settings → Pages → Source: GitHub Actions.
+name: Deploy demo to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: VITAL.Web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: VITAL.Web/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      # --base ajusta las rutas de assets al nombre del repositorio,
+      # sea cual sea (usuario.github.io/<repo>/)
+      - name: Build demo
+        run: npm run build:demo -- --base=/${{ github.event.repository.name }}/
+
+      # SPA fallback: GitHub Pages sirve 404.html en rutas como /dashboard,
+      # y el index arranca React Router con la ruta correcta
+      - name: SPA fallback
+        run: cp dist/index.html dist/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: VITAL.Web/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
