@@ -5,6 +5,11 @@
   --vital-accent: #2ecc71;
 }
 
+html, body {
+  /* Ningún elemento debe provocar scroll lateral en móviles */
+  overflow-x: hidden;
+}
+
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #f0f4f8;

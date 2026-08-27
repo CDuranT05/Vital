@@ -30,7 +30,7 @@ export default function BranchDetailSection({ branch }: { branch: BranchMetrics 
         ) : (
           <div className="divide-y divide-gray-50">
             {branch.technicians.map(t => (
-              <div key={t.id} className="px-5 py-3 flex items-center gap-4">
+              <div key={t.id} className="px-5 py-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="min-w-0 flex-1">
                   <p className="font-medium text-gray-800 text-sm">{t.name}</p>
                   <p className="text-xs text-gray-400">{t.identityCard}</p>
@@ -70,7 +70,7 @@ export default function BranchDetailSection({ branch }: { branch: BranchMetrics 
         ) : (
           <div className="divide-y divide-gray-50">
             {branch.inspectors.map(i => (
-              <div key={i.id} className="px-5 py-3 flex items-center gap-4">
+              <div key={i.id} className="px-5 py-3 flex flex-wrap items-center gap-x-4 gap-y-2">
                 <div className="min-w-0 flex-1">
                   <p className="font-medium text-gray-800 text-sm">{i.name}</p>
                   <p className="text-xs text-gray-400">{i.identityCard}</p>

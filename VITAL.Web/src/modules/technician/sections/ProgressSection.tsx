@@ -12,13 +12,13 @@ export default function ProgressSection({ total, restantes }: ProgressSectionPro
   const strokeDashoffset = circunferencia - (porcentaje / 100) * circunferencia
 
   return (
-    <div data-tour="tech-progress" className="flex items-center justify-center gap-6 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
+    <div data-tour="tech-progress" className="flex items-center justify-center gap-3 sm:gap-6 bg-white p-3 sm:p-4 rounded-xl border border-gray-100 shadow-sm">
       {/* Lado Izquierdo: Llevadas */}
-      <div className="flex flex-col items-center justify-center min-w-22.5">
+      <div className="flex flex-col items-center justify-center min-w-16 sm:min-w-22.5">
         <span className="text-3xl font-extrabold text-gray-800 ">{medidas}</span>
         <span className="text-[10px] font-bold text-gray-400 tracking-wider mt-1">LLEVADAS</span>
       </div>
-      <div className="bg-linear-to-br  bg-green-300 border-green-500 w-40 h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg shadow-pink-200 relative">
+      <div className="bg-linear-to-br  bg-green-300 border-green-500 w-32 h-32 sm:w-40 sm:h-40 rounded-2xl flex flex-col items-center justify-center shadow-lg shadow-pink-200 relative">
         <div className="relative w-22.5 h-22.5 flex items-center justify-center">
           <svg width="90" height="90" viewBox="0 0 100 100" className="-rotate-90">
             <circle
@@ -48,7 +48,7 @@ export default function ProgressSection({ total, restantes }: ProgressSectionPro
           Medición
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center min-w-22.5">
+      <div className="flex flex-col items-center justify-center min-w-16 sm:min-w-22.5">
         <span className="text-3xl font-extrabold text-gray-800">{restantes}</span>
         <span className="text-[10px] font-bold text-gray-400 tracking-wider mt-1">RESTANTES</span>
       </div>

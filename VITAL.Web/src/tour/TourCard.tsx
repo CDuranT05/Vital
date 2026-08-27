@@ -47,9 +47,12 @@ export default function TourCard({ step, index, total, pathname, onNext, onSkip,
     return () => clearInterval(t)
   }, [step, pathname])
 
+  // En móvil la tarjeta es una hoja inferior fija: no compite con el contenido
+  const isMobile = window.innerWidth < 640
+
   const pad = 6
   let cardStyle: React.CSSProperties | undefined
-  if (rect) {
+  if (rect && !isMobile) {
     const leftAligned = Math.min(Math.max(rect.left, 8), window.innerWidth - CARD_W - 8)
     const spaceBelow = window.innerHeight - (rect.top + rect.height)
     const spaceLeft = rect.left
@@ -94,10 +97,14 @@ export default function TourCard({ step, index, total, pathname, onNext, onSkip,
       {/* Tarjeta */}
       <div
         ref={cardRef}
-        className={`fixed z-[71] w-[336px] max-w-[calc(100vw-16px)] ${rect ? '' : 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'}`}
-        style={cardStyle}
+        className={
+          isMobile
+            ? 'fixed z-[71] inset-x-0 bottom-0'
+            : `fixed z-[71] w-[336px] max-w-[calc(100vw-16px)] ${rect ? '' : 'left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2'}`
+        }
+        style={isMobile ? undefined : cardStyle}
       >
-        <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+        <div className={`bg-white shadow-2xl border border-gray-100 overflow-hidden ${isMobile ? 'rounded-t-2xl' : 'rounded-2xl'}`}>
           <div className="bg-[#1a5276] px-4 py-2.5 flex items-center justify-between">
             <span className="text-white/80 text-xs font-semibold">Tutorial · Paso {index + 1} de {total}</span>
             <button onClick={onExit} title="Salir del tutorial" className="text-white/60 hover:text-white text-lg leading-none">×</button>
